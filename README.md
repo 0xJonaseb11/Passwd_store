@@ -4,8 +4,6 @@
 </p>
 <br/>
 
-## Stats
-
 # PasswordStore
 
 A smart contract applicatoin for storing a password. Users should be able to store a password and then retrieve it later. Others should not be able to access the password.
@@ -24,6 +22,7 @@ A smart contract applicatoin for storing a password. Users should be able to sto
 - [Roles](#roles)
 - [Known Issues](#known-issues)
   - [Create the audit report](#create-the-audit-report)
+    - [Jonas Sebera](#jonas-sebera)
 
 # Getting Started
 
@@ -116,3 +115,7 @@ View the [audit-report-templating](https://github.com/Cyfrin/audit-report-templa
 cd audits
 pandoc 2023-09-01-password-store-report.md -o report.pdf --from markdown --template=eisvogel --listings
 ```
+
+<hr>
+
+### Jonas Sebera
