@@ -39,6 +39,7 @@ A smart contract applicatoin for storing a password. Users should be able to sto
 ```
 git clone https://github.com/Cyfrin/2023-10-PasswordStore
 cd 2023-10-PasswordStore
+
 forge build
 ```
 
