@@ -54,5 +54,34 @@ contract DeployPasswordStoreTest is Test {
         passwordStore.setPassword(initialPassword);
 
         //change the password to a new one
+        string memory newPassword = "NewPassword";
+        passwordStore.changePassword(newPassword);
+
+        //Get the password from the PasswordStore
+        string memory enteredPassword = passwordStore.getPassword();
+
+        // Ensure that the entered password matches the new password
+        assertEq(enteredPassword, newPassword);
+    }
+
+    function test_owner_can_withdraw_funds() public {
+        // deploy a PasswordStore contract using the DeployPasswordStore
+        passwordStore = passwordDeployer.run();
+
+        // Add some funds to the PasswordStore
+        uint256 initialBalance = 10 ether;
+        passwordStore.addFunds{ value: initialBalance}();
+
+        // Check the initial balance
+        uint256 balance = passwordStore.getBalance();
+        assertEq(balance, initialBalance);
+
+        // Withdraw some funds to check
+        uint256 withdrawAmount = 5 ether;
+        passwordStore.withdrawFunds(withdrawAmount);
+
+        // Check the updated balance
+        uint256 newBalance = passwordStore.getBalance();
+        assertEq(newBalance, initialBalance - withdrawAmount);
     }
 }
