@@ -6,6 +6,7 @@ import { DeployPasswordStore } from "../script/DeployPasswordStore.s.sol";
 import { PasswordStore } from "../src/PasswordStore.sol";
 
 contract DeployPasswordStoreTest is Test {
+    DeployPasswordStore public passwordDeployer;
     DeployPasswordStore public deployPasswordStorer;
     PasswordStore public passwordStore;
     address public passwordOwner;
@@ -38,7 +39,7 @@ contract DeployPasswordStoreTest is Test {
         passwordStore = passwordDeployer.run();
 
         // Attempt to set the password from as address that is not the owner
-        bool success = address(passwordStore).call(abi.encodeWithSelector(passwordStore.setPassword.selector, "myNewPassword));
+        bool success = address(passwordStore).call(abi.encodeWithSelector(passwordStore.setPassword.selector, "myNewPassword"));
 
         //Ensure that setting the password from a non-owner addressfails
         assertEq(success, false);
@@ -46,23 +47,29 @@ contract DeployPasswordStoreTest is Test {
     }
 
     function test_owner_can_change_password() public {
-        //deploy a PasswordStore contract using the DeployPasswordStore
-        passwordStore = passwordDeployer.run();
+    // Deploy a PasswordStore contract using the DeployPasswordStore
+    passwordStore = deployPasswordStorer.run();
 
-        //set the initial password
-        string memory initialPassword = "initialPassword";
-        passwordStore.setPassword(initialPassword);
+    // Set an initial password
+    string memory initialPassword = "initialPassword";
+    passwordStore.setPassword(initialPassword);
 
-        //change the password to a new one
-        string memory newPassword = "NewPassword";
-        passwordStore.changePassword(newPassword);
+    // Change the password to a new one
+    string memory newPassword = "newPassword";
 
-        //Get the password from the PasswordStore
-        string memory enteredPassword = passwordStore.getPassword();
+    // Encode the function call with the new password
+    (bool success, ) = address(passwordStore).call(abi.encodeWithSelector(passwordStore.changePassword.selector, newPassword));
 
-        // Ensure that the entered password matches the new password
-        assertEq(enteredPassword, newPassword);
-    }
+    // Ensure that the function call was successful
+    assert(success, "Change password call failed");
+
+    // Get the password from the PasswordStore
+    string memory enteredPassword = passwordStore.getPassword();
+
+    // Ensure that the entered password matches the new password
+    assertEq(enteredPassword, newPassword);
+}
+
 
     function test_owner_can_withdraw_funds() public {
         // deploy a PasswordStore contract using the DeployPasswordStore
