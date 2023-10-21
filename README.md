@@ -1,4 +1,4 @@
-<br/>
+### @Jonas-sebera
 <p align="center">
 <img src="https://res.cloudinary.com/droqoz7lg/image/upload/w_0.5,c_scale/v1697562167/company/mm4xmbdd48iwb7xfsi00.png">
 </p>
@@ -22,7 +22,7 @@ A smart contract applicatoin for storing a password. Users should be able to sto
 - [Roles](#roles)
 - [Known Issues](#known-issues)
   - [Create the audit report](#create-the-audit-report)
-    - [Jonas Sebera](#jonas-sebera)
+    - [@Jonas-sebera](#jonas-sebera-1)
 
 # Getting Started
 
@@ -119,4 +119,4 @@ pandoc 2023-09-01-password-store-report.md -o report.pdf --from markdown --templ
 
 <hr>
 
-### Jonas Sebera
+### @Jonas-sebera
