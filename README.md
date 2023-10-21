@@ -37,6 +37,7 @@ A smart contract applicatoin for storing a password. Users should be able to sto
 
 ```
 git clone https://github.com/Jonas-sebera/PasswordStore
+
 cd PasswordStore
 
 forge build
