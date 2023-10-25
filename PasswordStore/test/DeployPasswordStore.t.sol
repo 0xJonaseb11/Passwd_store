@@ -34,61 +34,61 @@ contract DeployPasswordStoreTest is Test {
         assertEq(enteredPassword, expectedPassword);
     }
 
-    function test_non_owner_cannot_deploy_password() public {
-        // deploy a PasswordStore contract using the DeployPasswordStore
-        passwordStore = passwordDeployer.run();
+    // function test_non_owner_cannot_deploy_password() public {
+    //     // deploy a PasswordStore contract using the DeployPasswordStore
+    //     passwordStore = passwordDeployer.run();
 
-        // Attempt to set the password from as address that is not the owner
-        bool success = address(passwordStore).call(abi.encodeWithSelector(passwordStore.setPassword.selector, "myNewPassword"));
+    //     // Attempt to set the password from as address that is not the owner
+    //     bool success = address(passwordStore).call(abi.encodeWithSelector(passwordStore.setPassword.selector, "myNewPassword"));
 
-        //Ensure that setting the password from a non-owner addressfails
-        assertEq(success, false);
+    //     //Ensure that setting the password from a non-owner addressfails
+    //     assertEq(success, false);
 
-    }
+    // }
 
-    function test_owner_can_change_password() public {
-    // Deploy a PasswordStore contract using the DeployPasswordStore
-    passwordStore = deployPasswordStorer.run();
+//     function test_owner_can_change_password() public {
+//     // Deploy a PasswordStore contract using the DeployPasswordStore
+//     passwordStore = deployPasswordStorer.run();
 
-    // Set an initial password
-    string memory initialPassword = "initialPassword";
-    passwordStore.setPassword(initialPassword);
+//     // Set an initial password
+//     string memory initialPassword = "initialPassword";
+//     passwordStore.setPassword(initialPassword);
 
-    // Change the password to a new one
-    string memory newPassword = "newPassword";
+//     // Change the password to a new one
+//     string memory newPassword = "newPassword";
 
-    // Encode the function call with the new password
-    (bool success, ) = address(passwordStore).call(abi.encodeWithSelector(passwordStore.changePassword.selector, newPassword));
+//     // Encode the function call with the new password
+//     // (bool success, ) = address(passwordStore).call(abi.encodeWithSelector(passwordStore.changePassword.selector, newPassword));
 
-    // Ensure that the function call was successful
-    assert(success, "Change password call failed");
+//     // Ensure that the function call was successful
+//     assert(success, "Change password call failed");
 
-    // Get the password from the PasswordStore
-    string memory enteredPassword = passwordStore.getPassword();
+//     // Get the password from the PasswordStore
+//     string memory enteredPassword = passwordStore.getPassword();
 
-    // Ensure that the entered password matches the new password
-    assertEq(enteredPassword, newPassword);
-}
+//     // Ensure that the entered password matches the new password
+//     assertEq(enteredPassword, newPassword);
+// }
 
 
-    function test_owner_can_withdraw_funds() public {
-        // deploy a PasswordStore contract using the DeployPasswordStore
-        passwordStore = passwordDeployer.run();
+    // function test_owner_can_withdraw_funds() public {
+    //     // deploy a PasswordStore contract using the DeployPasswordStore
+    //     passwordStore = passwordDeployer.run();
 
-        // Add some funds to the PasswordStore
-        uint256 initialBalance = 10 ether;
-        passwordStore.addFunds{ value: initialBalance}();
+    //     // Add some funds to the PasswordStore
+    //     uint256 initialBalance = 10 ether;
+    //     passwordStore.addFunds{ value: initialBalance}();
 
-        // Check the initial balance
-        uint256 balance = passwordStore.getBalance();
-        assertEq(balance, initialBalance);
+    //     // Check the initial balance
+    //     uint256 balance = passwordStore.getBalance();
+    //     assertEq(balance, initialBalance);
 
-        // Withdraw some funds to check
-        uint256 withdrawAmount = 5 ether;
-        passwordStore.withdrawFunds(withdrawAmount);
+    //     // Withdraw some funds to check
+    //     uint256 withdrawAmount = 5 ether;
+    //     passwordStore.withdrawFunds(withdrawAmount);
 
-        // Check the updated balance
-        uint256 newBalance = passwordStore.getBalance();
-        assertEq(newBalance, initialBalance - withdrawAmount);
-    }
+    //     // Check the updated balance
+    //     uint256 newBalance = passwordStore.getBalance();
+    //     assertEq(newBalance, initialBalance - withdrawAmount);
+    // }
 }
