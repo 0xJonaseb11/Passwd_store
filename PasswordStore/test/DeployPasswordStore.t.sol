@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
 import { Test, console } from "forge-std/Test.sol";
 import { DeployPasswordStore } from "../script/DeployPasswordStore.s.sol";
@@ -46,7 +46,7 @@ contract DeployPasswordStoreTest is Test {
 
     }
 
-    fu
+    
     // Set an initial password
     string memory initialPassword = "initialPassword";
     passwordStore.setPassword(initialPassword);
